@@ -91,6 +91,7 @@ CustomObjectDef *chfdw_check_for_custom_function(Oid funcid)
 			case F_TIMESTAMPTZ_PART:
 			case F_ARRAY_POSITION:
 			case 868: // strpos
+			case 2335: //array_agg(anynonarray)
 			case F_BTRIM:
 			case F_BTRIM1:
 				special_builtin = true;
@@ -153,6 +154,9 @@ CustomObjectDef *chfdw_check_for_custom_function(Oid funcid)
 				strcpy(entry->custom_name, "position");
 				break;
 			}
+			case 2335:
+				strcpy(entry->custom_name, "groupArray");
+				break;
 		}
 
 		if (special_builtin)
